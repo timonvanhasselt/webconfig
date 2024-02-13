@@ -93,6 +93,14 @@
         border: 10px solid #3498db; /* Adjust thickness and color as needed */
     }
 
+    #jsonOutput {
+        width: 100%;
+        height: 200px; /* Adjust height as needed */
+        resize: vertical; /* Allow vertical resizing */
+        font-family: 'Consolas', monospace; /* Use Courier New or preferred monospaced font */
+        font-size: 20px; /* Adjust font size as needed */
+    }
+
 </style>
 </head>
 <body>
@@ -162,8 +170,8 @@
       <legend>Tts Module</legend>
       <label for="tts_module">Module: </label>
       <select id="tts_module" name="tts_module" onchange="updateVoiceDropdown()">
-        <option value="Ovos-tts-server">Ovos-tts-server</option>
-        <option value="ovos-tts-plugin-google-tx">ovos-tts-plugin-google-tx</option>
+        <option value="ovos-tts-server">ovos-tts-server</option>
+        <option value="ovos-tts-plugin-edge-tts">ovos-tts-plugin-edge-tts</option>
         <!-- Add more options as needed -->
       </select>
 
@@ -207,11 +215,11 @@
         voiceDropdown.innerHTML = "";
 
         // Populate voice options based on the selected module
-        if (moduleDropdown.value === "Ovos-tts-server") {
+        if (moduleDropdown.value === "ovos-tts-server") {
             var voices = ["ryan high", "ryan low"];
             sentenceTokenizeField.style.display = "block";
-        } else if (moduleDropdown.value === "ovos-tts-plugin-google-tx") {
-            var voices = ["Dutch", "English"];
+        } else if (moduleDropdown.value === "ovos-tts-plugin-edge-tts") {
+            var voices = ["en-US-AriaNeural", "nl-NL-FennaNeural"];
             sentenceTokenizeField.style.display = "none";
         }
 
@@ -253,7 +261,7 @@
         var moduleValue = form.elements["tts_module"].value;
         var voiceValue = form.elements["tts_module_voice"].value;
 
-        if (moduleValue === "Ovos-tts-server" || moduleValue === "ovos-tts-plugin-google-tx") {
+        if (moduleValue === "ovos-tts-server" || moduleValue === "ovos-tts-plugin-edge-tts") {
             if (!json["tts"]) {
                 json["tts"] = {};
             }
@@ -291,13 +299,7 @@
     // Call the function to set up live updating on form change
     updateJSONOnFormChange();
 </script>
-
-
-
-
-
 </form>
-
 </body>
 </html>
 
